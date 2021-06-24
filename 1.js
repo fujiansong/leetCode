@@ -32,3 +32,27 @@ const twoSum = function (nums, target) {
 };
 
 console.log("result: ", twoSum([2, 7, 11, 15], 18));
+
+// 第二版  target减去当前元素，然后在剩余元素中查找是否有相同值
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+const twoSumV2 = function (nums, target) {
+  let result = [];
+  nums.forEach((num, i) => {
+    const otherValue = target - num;
+    const othernums = nums.slice(i + 1);
+    const findIndex = othernums.findIndex((n) => n === otherValue);
+
+    const otherIndex = i + 1 + findIndex;
+    if (findIndex !== -1 && i !== otherIndex) result = [i, otherIndex];
+  });
+  return result;
+};
+
+// console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 19)); // => []
+// console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 18)); // => [1,2]
+// console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 22)); // => [1,3]
+console.log("resultV2: ", twoSumV2([3, 3], 6)); // => [0,1]
