@@ -52,7 +52,33 @@ const twoSumV2 = function (nums, target) {
   return result;
 };
 
-// console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 19)); // => []
-// console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 18)); // => [1,2]
-// console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 22)); // => [1,3]
+console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 19)); // => []
+console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 18)); // => [1,2]
+console.log("resultV2: ", twoSumV2([2, 7, 11, 15], 22)); // => [1,3]
 console.log("resultV2: ", twoSumV2([3, 3], 6)); // => [0,1]
+
+// 第三版  第二版效率不理想，重新思考，利用Map将元素存储起来，不需要循环查找，空间换时间
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+const twoSumV3 = function (nums, target) {
+  let result = [];
+
+  let other = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const otherValue = target - nums[i];
+    if (other.has(otherValue)) {
+      result = [i, other.get(otherValue)];
+      break;
+    }
+    other.set(nums[i], i);
+  }
+  return result;
+};
+
+console.log("resultV3: ", twoSumV3([2, 7, 11, 15], 19)); // => []
+console.log("resultV3: ", twoSumV3([2, 7, 11, 15], 18)); // => [1,2]
+console.log("resultV3: ", twoSumV3([2, 7, 11, 15], 22)); // => [1,3]
+console.log("resultV3: ", twoSumV3([3, 3], 6)); // => [0,1]
