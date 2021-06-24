@@ -5,6 +5,10 @@
 
 // v1: 转成数组直接反转
 
+/**
+ * @param {number} x
+ * @return {number}
+ */
 const reverse = (x) => {
   if (x === 0) return 0;
 
@@ -20,4 +24,3 @@ console.log("reverse:", reverse(-123)); // => -321
 console.log("reverse:", reverse(-210)); // => -12
 console.log("reverse:", reverse(210)); // => 12
 console.log("reverse:", reverse(0)); // => 0
-
